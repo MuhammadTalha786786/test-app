@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 import { setSignIn } from '../../redux/auth/AuthReducer';
 import {useDispatch} from 'react-redux';
+import moment from 'moment';
+
 
 
 
@@ -23,7 +25,25 @@ export const useLogin = () => {
       name: '',
       email: '',
       uid: '',
+      time:""
     };
+
+    const updateUser = async (userID) =>{
+      await firestore()
+      .collection('users')
+      .doc(userID)
+      .update({
+        time: moment().format('LLL')
+      })
+      .then(res => {
+        console.log(res)
+        updateLogin(userID)
+        
+       
+      });
+
+
+    }
   
     const updateLogin = uid => {
       firestore()
@@ -33,7 +53,11 @@ export const useLogin = () => {
         .then((snapshot:any) => {
           console.log(snapshot.data().image, 'dasdad');
           LoginUser.name = snapshot.data().name;
+          LoginUser.time = snapshot.data().time;
+
           dispatch(setSignIn(LoginUser));
+          
+
         });
     };
 
@@ -54,8 +78,7 @@ export const useLogin = () => {
           .then((loggedInUser:any) => {
             if (loggedInUser) {
               setLoader(false);
-              console.log(loggedInUser, 'user login here');
-              updateLogin(loggedInUser.user._user.uid);
+              updateUser(loggedInUser.user._user.uid)
               LoginUser.email = loggedInUser.user._user.email;
               LoginUser.uid = loggedInUser.user._user.uid;
             }

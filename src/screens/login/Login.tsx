@@ -93,11 +93,7 @@ const Login = ({ navigation }) => {
 
             </View>
 
-            <View style={styles.GoogleSignInView}>
-              <Divider style={styles.DividerStyle} />
-              <Text style={styles.SignInText}>or sign in with</Text>
-              <Divider style={styles.DividerStyle} />
-            </View>
+        
 
 
 
@@ -147,13 +143,7 @@ const Login = ({ navigation }) => {
         </View> */}
 
             <View style={{ padding: 10 }}>
-              <ButtonComponent
-                buttonTitle="Sign In with Google"
-                btnType="google"
-                color="#f5e7ea"
-                backgroundColor="#de4d41"
-                onPress={() => { }}
-              />
+         
               <View style={styles.accountView}>
                 <Text style={styles.accountText}>
                   Don't have an account?{' '}

@@ -122,7 +122,7 @@ import firestore from '@react-native-firebase/firestore';
             <TextInputComponent
               value={Password}
               setValue={setPassword}
-              placeholder="Enter Password"
+              placeholder="Enter  6 characters Password"
               mode="outlined"
               label="Password"
               secureTextEntry={true}
@@ -159,20 +159,9 @@ import firestore from '@react-native-firebase/firestore';
               onPress={()=>{createNewAccount()}}
             />
           </View>
-          <View style={styles.GoogleSignInView}>
-            <Divider style={styles.DividerStyle} />
-            <Text style={styles.SignInText}>or sign in with</Text>
-            <Divider style={styles.DividerStyle} />
-          </View>
-  
+      
           <View style={{ padding: 10 }}>
-            <ButtonComponent
-              buttonTitle="Sign In with Google"
-              btnType="google"
-              color="#de4d41"
-              backgroundColor="#f5e7ea"
-              onPress={()=>{createNewAccount()}}
-            />
+          
             <View style={styles.accountView}>
               <Text style={styles.accountText}>Already have an account? </Text>
               <TouchableOpacity
